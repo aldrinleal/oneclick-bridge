@@ -6,7 +6,7 @@ A small serverless application written in go that given a topic (created in the 
 
 ## Sample
 
-See the video at https://youtu.be/4LcWzgyEYCQ 
+See the video at https://youtu.be/YblSiaKV1NQ
 
 For the record, here's a sample 1-click event:
 
@@ -56,10 +56,12 @@ For the record, here's a sample 1-click event:
 
 ## Deploying
 
-(requires go and serverless framework):
+(requires go, yarn and serverless framework):
 
 ```
-$ make && sls deploy
+$ go get -v ./...
+$ yarn install --frozen-lockfile
+$ make && yarn sls deploy
 ```
 
 ## Tools:
