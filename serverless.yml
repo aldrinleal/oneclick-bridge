@@ -1,0 +1,38 @@
+service: ocb
+
+frameworkVersion: '>=2.33.0 <3.0.0'
+
+provider:
+  name: aws
+  runtime: go1.x
+  region: us-west-2
+  stage: ${opt:stage,'dev'}
+  environment:
+    # you can define service wide environment variables here
+    GIN_MODE: "release"
+    TOPIC_ARN: !Ref SNSTopic
+  memorySize: 256
+  timeout: 30
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sns:Publish"
+      Resource: "*"
+
+package:
+  exclude:
+    - ./**
+  include:
+    - ./bin/**
+
+functions:
+  service:
+    handler: bin/service
+
+resources:
+  Resources:
+    SNSTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: ocb-${self:provider.stage,'dev'}-event
+  Description: "Simple OneClick Handler"
