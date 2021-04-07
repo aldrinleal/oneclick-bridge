@@ -1,6 +1,9 @@
 package types
 
-import "time"
+import (
+	"encoding/json"
+	"time"
+)
 
 type OneClickEvent struct {
 	DeviceEvent struct {
@@ -19,18 +22,18 @@ type OneClickEvent struct {
 			ProjectName        string `json:"projectName"`
 			ProjectRegion      string `json:"projectRegion"`
 		} `json:"attributes"`
-		DeviceID      string `json:"deviceId"`
-		RemainingLife int64  `json:"remainingLife"`
-		Type          string `json:"type"`
+		DeviceID      string      `json:"deviceId"`
+		RemainingLife json.Number `json:"remainingLife"`
+		Type          string      `json:"type"`
 	} `json:"deviceInfo"`
 	DevicePayload struct {
-		CertificateID string `json:"certificateId"`
-		ClickType     string `json:"clickType"`
-		RemainingLife int64  `json:"remainingLife"`
-		ReportedTime  int64  `json:"reportedTime"`
-		SerialNumber  string `json:"serialNumber"`
-		Topic         string `json:"topic"`
-		Version       string `json:"version"`
+		CertificateID string      `json:"certificateId"`
+		ClickType     string      `json:"clickType"`
+		RemainingLife json.Number `json:"remainingLife"`
+		ReportedTime  int64       `json:"reportedTime"`
+		SerialNumber  string      `json:"serialNumber"`
+		Topic         string      `json:"topic"`
+		Version       string      `json:"version"`
 	} `json:"devicePayload"`
 	PlacementInfo struct {
 		Attributes struct {
