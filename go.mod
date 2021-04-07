@@ -1,4 +1,4 @@
-module github.com/aldrinleal/sls-1click-bridge
+module github.com/aldrinleal/oneclick-bridge
 
 go 1.16
 
